@@ -31,7 +31,15 @@ void Router::initialize()
     else if (strcmp(algName, "minServiceTime") == 0) {
         routingAlgorithm = ALG_MIN_SERVICE_TIME;
     }
+    else if (strcmp(algName, "pssRandom") == 0) {
+        routingAlgorithm = ALG_PSSRANDOM;
+    }
     rrCounter = 0;
+    int qn = par("queueNumber").intValue() - 1;
+    if (qn < 0 || qn > gateSize("out") - 1)
+        throw cRuntimeError("Invalid queue number");
+    else
+        queueNumber = qn;
 }
 
 void Router::handleMessage(cMessage *msg)
@@ -61,6 +69,10 @@ void Router::handleMessage(cMessage *msg)
         case ALG_MIN_SERVICE_TIME:
             // TODO implementation missing
             outGateIndex = -1;
+            break;
+
+        case ALG_PSSRANDOM:
+            outGateIndex = intuniform(0, queueNumber);
             break;
 
         default:

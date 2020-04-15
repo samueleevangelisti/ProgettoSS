@@ -12,7 +12,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
-import ned.IBidirectionalChannel;
 import org.omnetpp.queueing.PassiveQueue;
 import org.omnetpp.queueing.Router;
 import org.omnetpp.queueing.Server;
