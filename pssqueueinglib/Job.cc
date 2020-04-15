@@ -98,4 +98,9 @@ void Job::childDeleted(Job *child)
     children.erase(it);
 }
 
+void Job::setAbsoluteDeadline(simtime_t absoluteDeadline)
+{
+    this->absoluteDeadline = absoluteDeadline;
+}
+
 }; // namespace

@@ -45,6 +45,8 @@ class QUEUEING_API Job: public Job_Base
         virtual void setParent(Job *parent); // only for addChild()
         virtual void parentDeleted();
         virtual void childDeleted(Job *child);
+        // progettoss
+        simtime_t absoluteDeadline;
     public:
         /**
          * Creates a job with the given name, message kind, and jobList. If
@@ -84,6 +86,9 @@ class QUEUEING_API Job: public Job_Base
 
         /** Returns the JobList where this job has been registered. */
         JobList *getContainingJobList() {return jobList;}
+
+        // progettoss
+        void setAbsoluteDeadline(simtime_t absoluteDeadline);
 
 };
 

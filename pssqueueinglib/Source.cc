@@ -29,6 +29,7 @@ Job *SourceBase::createJob()
     Job *job = new Job(buf);
     job->setKind(par("jobType"));
     job->setPriority(par("jobPriority"));
+    job->setAbsoluteDeadline(simTime() + par("jobRelativeDeadline"));
     return job;
 }
 

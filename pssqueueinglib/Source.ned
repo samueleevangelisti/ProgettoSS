@@ -14,6 +14,7 @@ package org.omnetpp.queueing;
 // the starting and ending time, and interval between generating jobs.
 // Job generation stops when the number of jobs or the end time has been reached,
 // whichever occurs first. The name, type and priority of jobs can be set as well.
+// One can specify the job relative deadline.
 //
 simple Source
 {
@@ -29,6 +30,8 @@ simple Source
         volatile int jobPriority = default(0);   // priority of the job
         double startTime @unit(s) = default(interArrivalTime); // when the module sends out the first job
         double stopTime @unit(s) = default(-1s); // when the module stops the job generation (-1 means no limit)
+        // progettoss
+        double jobRelativeDeadline @unit(s) = default(0s);    // job relative deadline
     gates:
         output out;
 }
