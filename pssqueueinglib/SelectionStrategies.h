@@ -96,6 +96,20 @@ class QUEUEING_API LongestQueueSelectionStrategy : public SelectionStrategy
         virtual int select() override;
 };
 
+// progettoss
+/**
+ * End all the tasks in a queue, then chooses cyclically the next one.
+ * Input strategy (for servers).
+ */
+class QUEUEING_API ExhaustiveServiceSelectionStrategy : public SelectionStrategy
+{
+    private:
+        int actualInputGate;    // actual input gate
+    public:
+        ExhaustiveServiceSelectionStrategy(cSimpleModule *module, bool selectOnInGate);
+        virtual int select() override;
+};
+
 }; //namespace
 
 #endif

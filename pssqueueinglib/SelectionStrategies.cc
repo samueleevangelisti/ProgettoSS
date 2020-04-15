@@ -43,6 +43,9 @@ SelectionStrategy *SelectionStrategy::create(const char *algName, cSimpleModule 
     else if (strcmp(algName, "longestQueue") == 0) {
         strategy = new LongestQueueSelectionStrategy(module, selectOnInGate);
     }
+    else if (strcmp(algName, "exhaustiveService") == 0) {
+        strategy = new ExhaustiveServiceSelectionStrategy(module, selectOnInGate);
+    }
 
     return strategy;
 }
@@ -178,6 +181,34 @@ int LongestQueueSelectionStrategy::select()
         }
     }
     return result;
+}
+
+// --------------------------------------------------------------------------------------------
+
+ExhaustiveServiceSelectionStrategy::ExhaustiveServiceSelectionStrategy(cSimpleModule *module, bool selectOnInGate) :
+    SelectionStrategy(module, selectOnInGate)
+{
+    actualInputGate = 0;
+}
+
+int ExhaustiveServiceSelectionStrategy::select()
+{
+    // previously selected queue is not empty
+    if (isSelectable(selectableGate(actualInputGate)->getOwnerModule()))
+        return actualInputGate;
+    // scan cyclically the next non empty queue
+    else {
+        for (int i = 1; i < gateSize; i++) {
+            int gn = (actualInputGate + i) % gateSize;
+            if (isSelectable(selectableGate(gn)->getOwnerModule())) {
+                actualInputGate = gn;
+                return gn;
+            }
+        }
+    }
+
+    // if none of them is selectable return an invalid no.
+    return -1;
 }
 
 }; //namespace
