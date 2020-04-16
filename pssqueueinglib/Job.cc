@@ -103,4 +103,9 @@ void Job::setAbsoluteDeadline(simtime_t absoluteDeadline)
     this->absoluteDeadline = absoluteDeadline;
 }
 
+simtime_t Job::getAbsoluteDeadline()
+{
+    return absoluteDeadline;
+}
+
 }; // namespace

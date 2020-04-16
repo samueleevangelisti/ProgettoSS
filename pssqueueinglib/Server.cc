@@ -42,6 +42,9 @@ void Server::initialize()
     selectionStrategy = SelectionStrategy::create(par("fetchingAlgorithm"), this, true);
     if (!selectionStrategy)
         throw cRuntimeError("invalid selection strategy");
+    // progettoss
+    droppedForDeadlineSignal = registerSignal("droppedForDeadline");
+    checkJobDeadline = par("checkJobDeadline").boolValue();
 }
 
 void Server::handleMessage(cMessage *msg)
@@ -69,11 +72,33 @@ void Server::handleMessage(cMessage *msg)
             error("job arrived, but the sender did not call allocate() previously");
         if (jobServiced)
             throw cRuntimeError("a new job arrived while already servicing one");
-
         jobServiced = check_and_cast<Job *>(msg);
         simtime_t serviceTime = par("serviceTime");
-        scheduleAt(simTime()+serviceTime, endServiceMsg);
-        emit(busySignal, true);
+        if (checkJobDeadline) {
+            if (jobServiced->getAbsoluteDeadline() < simTime()) {
+                EV << "Dropped!" << endl;
+                if (hasGUI())
+                    bubble("Dropped!");
+                emit(droppedForDeadlineSignal, 1);
+                delete msg;
+                allocated = false;
+                jobServiced = nullptr;
+                int k = selectionStrategy->select();
+                if (k >= 0) {
+                    EV << "requesting job from queue " << k << endl;
+                    cGate *gate = selectionStrategy->selectableGate(k);
+                    check_and_cast<IPassiveQueue *>(gate->getOwnerModule())->request(gate->getIndex());
+                }
+            }
+            else {
+                scheduleAt(simTime()+serviceTime, endServiceMsg);
+                emit(busySignal, true);
+            }
+        }
+        else {
+            scheduleAt(simTime()+serviceTime, endServiceMsg);
+            emit(busySignal, true);
+        }
     }
 }
 

@@ -20,10 +20,15 @@ simple Server
         @display("i=block/server");
         @signal[busy](type="bool");
         @statistic[busy](title="server busy state";record=vector?,timeavg;interpolationmode=sample-hold);
+        // progettoss
+        @signal[droppedForDeadline](type="long");
+        @statistic[droppedForDeadline](title="drop event for deadline reached";record=vector?,count;interpolationmode=none);
 
         string fetchingAlgorithm @enum("priority","random","roundRobin","longestQueue","exhaustiveService") = default("priority");
              // how the next job will be choosen from the attached queues
         volatile double serviceTime @unit(s); // service time of a job
+        // progettoss
+        bool checkJobDeadline = default(false);
     gates:
         input in[];
         output out;

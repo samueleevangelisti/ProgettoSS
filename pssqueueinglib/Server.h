@@ -34,6 +34,10 @@ class QUEUEING_API Server : public cSimpleModule, public IServer
         Job *jobServiced;
         cMessage *endServiceMsg;
 
+        // progettoss
+        simsignal_t droppedForDeadlineSignal;
+        bool checkJobDeadline;
+
     public:
         Server();
         virtual ~Server();

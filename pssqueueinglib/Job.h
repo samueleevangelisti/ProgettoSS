@@ -90,6 +90,8 @@ class QUEUEING_API Job: public Job_Base
         // progettoss
         void setAbsoluteDeadline(simtime_t absoluteDeadline);
 
+        simtime_t getAbsoluteDeadline();
+
 };
 
 }; // namespace
