@@ -42,7 +42,6 @@ void Server::initialize()
     selectionStrategy = SelectionStrategy::create(par("fetchingAlgorithm"), this, true);
     if (!selectionStrategy)
         throw cRuntimeError("invalid selection strategy");
-    // progettoss
     droppedForDeadlineSignal = registerSignal("droppedForDeadline");
     checkJobDeadline = par("checkJobDeadline").boolValue();
 }
