@@ -24,31 +24,31 @@ import org.omnetpp.queueing.Source;
 //
 network Network
 {
-    @display("bgb=677,409");
+    @display("bgb=520,420");
     submodules:
         source: Source {
-            @display("p=53,191");
+            @display("p=60,210");
         }
         router: Router {
-            @display("p=173,191");
+            @display("p=160,210");
         }
         passiveQueue: PassiveQueue {
-            @display("p=324,63");
+            @display("p=260,60");
         }
         passiveQueue1: PassiveQueue {
-            @display("p=321,152");
+            @display("p=260,160");
         }
         passiveQueue2: PassiveQueue {
-            @display("p=321,238");
+            @display("p=260,260");
         }
         passiveQueue3: PassiveQueue {
-            @display("p=321,325");
+            @display("p=260,360");
         }
         server: Server {
-            @display("p=479,191");
+            @display("p=360,210");
         }
         sink: Sink {
-            @display("p=613,191");
+            @display("p=460,210");
         }
     connections:
         source.out --> router.in++;
