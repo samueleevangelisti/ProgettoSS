@@ -54,6 +54,7 @@ pssqueueinglib.
 - [csvresults](https://github.com/samueleevangelisti/ProgettoSS/tree/master/csvresults): risultati delle simulazioni per ogni configurazione convertiti in .csv
 - [Notebook.ipynb](https://github.com/samueleevangelisti/ProgettoSS/blob/master/Notebook.ipynb): notebook utilizzato per analizzare i dati ottenuti
 - [Relazione.pdf](https://github.com/samueleevangelisti/ProgettoSS/blob/master/Relazione.pdf): relazione sulla simulazione effettuata
+- [Presentazione.pdf](https://github.com/samueleevangelisti/ProgettoSS/blob/master/Presentazione.pdf): presentazione della relazione e dei risultati ottenuti
 
 ## Riferimenti
 
