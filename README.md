@@ -1,4 +1,4 @@
-# ProgettoSS
+# Analisi di un Sistema M/M/1+G Gestito Secondo la Politica FCFS con Exact Admission Control
 
 Il modello di simulazione studiato è una variante del modello riportato in nella sezione 2 dell'articolo "Analysis of an M/M/1+G System Operated under the FCFS Policy with Exact Admission Control". A tale
 scopo è stata utilizzata la piattaforma OMNeT++ 5.6.1 modificando opportunamente alcuni moduli
