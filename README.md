@@ -22,6 +22,10 @@ presenti nella libreria 'queueinglib'. La nuova libreria, utilizzata nella fase 
     - Massimo
     - Medio
   - Job non Serviti
+- Conclusioni
+  - lambda = 1.0, mu = 4.0
+  - lambda = 2.0, mu = 3.0
+  - Analisi dei Risultati
 - Codice Sorgente
   - network.ned
   - omnetpp.ini
